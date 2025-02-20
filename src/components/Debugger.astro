@@ -1,0 +1,21 @@
+---
+import { readFile } from 'fs/promises';
+
+const { fileName } = Astro.props;
+
+let url = "";
+try {
+  const filePath = `./src/code/${fileName}`;
+  const code = await readFile(filePath, 'utf-8');
+  // Codificar el código para la URL
+  const encodedCode = encodeURIComponent(code);
+  url = `https://pythontutor.com/iframe-embed.html#code=${encodedCode}&codeDivHeight=500&py=3&curInstr=0`;
+} catch (error) {
+  console.error("Error reading file:", error);
+}
+---
+
+{url ? 
+  <iframe src={url} width="710" height="720" style="border:1px solid #ccc;"></iframe> :
+  <p>Error cargando el código.</p>
+}

@@ -1,0 +1,181 @@
+---
+title: 'Funciones'
+description: 'Articulo sobre funciones de programación'
+pubDate: 'Feb 20 2025'
+heroImage: '/Inputs.jpg'
+---
+import Container from '../../components/Container.astro';
+import Box from '../../components/BoxText.astro';
+import Paragraph from '../../components/Paragraph.astro';
+import Debugger from '../../components/Debugger.astro'
+import Code from '../../components/Code.astro'
+import BackToTop from '../../components/BackToTop.jsx';
+import FnMachine from '../../components/FunctionMachine.jsx'
+
+## Definición:
+
+¡Las **funciones** se encuentran por todas partes! Aunque nosotros las estudiaremos
+en el contexto de la programación, como concepto existe desde mucho tiempo atras con 
+origenes en el campo de las ciencias matematicas. 
+
+Las funciones nos permiten obtener un conjunto de valores de **salida** que estan relacionados 
+con el conjunto de **entrada** de las mismas.
+
+En el contexto de la programación estructurada: 
+Una funcion es un fragmento (una porción) de programa que permite **efectuar una operación** determinada.
+- Para efectuar las operaciones, las funciones reciben datos, a los que llamaremos **parametros.**
+- Las funciones devuelven uno o más ***resultados.***
+
+Podemos pensar a las funciones como "maquinas", las cuales no necesariamente conocemos a ciencia 
+cierta como es su funcionamiento. En este sentido lo unico que nos interesa es que parametros recibe 
+y que valores devuelve en base a la "relación" que hay entre las entradas y las salidas.
+
+<FnMachine client:load />
+
+<Container>
+  <Box>
+    <h5>PROGRAMA PRINCIPAL</h5>
+    <div class='container-gap'>
+      <div>
+        <Paragraph>base = 5</Paragraph>
+        <Paragraph>altura = 3</Paragraph>
+      </div>
+      <div>
+        <Paragraph>Z = area_rectangulo(base, altura)</Paragraph>
+      </div>
+      <div>
+        <Paragraph>print(Z)</Paragraph>
+        <Paragraph>print(area_rectangulo(base, altura))</Paragraph>
+      </div>
+    </div>
+  </Box>
+  <Box>
+    <h5>FUNCIÓN</h5>
+    <div class='container-mg'>
+      <Paragraph><strong>def</strong> area_rectangulo(b,a):</Paragraph>
+      <Paragraph classname='function-indent'>resultado = 5</Paragraph>
+      <Paragraph classname='function-indent'>resultado = b*a</Paragraph>
+      <Paragraph><strong>return</strong> = resultado</Paragraph>
+    </div>
+  </Box>
+</Container>
+
+### Definición vs Llamada.
+
+En python la declaración de una funcion consta de su **firma** e implementación.
+- La firma es el nombre_de_la_funcion + **parametros**.
+- La implementación sera el codigo que se ejecutara en el cuerpo de la función.
+
+<Code fileName='funcionAreaEx.py'></Code>
+
+Una llamada a función sera la invocación (instanciación) de la misma desde algun programa.
+En caso de que reciba **parametros**, estos deberan ser enviados en forma de **argumentos**
+desde el programa que mande a llamar a la función.
+
+### Parametros vs Argumentos.
+
+Los parametros de una función son parte de su definición e indicaran los datos que recibiran
+cuando sean invocadas. Al momento de ejecutarse el codigo de una funcion, esta utilizara el valor
+que reciba por los parametros.
+
+Los argumentos seran los valores que se le envian a la función al momento de llamarla 
+desde un programa. Estos valores pueden llamarse igual o no a los parametros indicados en la 
+declaracion de la funcion. 
+
+<Code fileName='funcionAreaMainEx.py'></Code>
+
+### Valores por defecto.
+
+En python podemos definir valores por defecto a los parametros. 
+Esto es util en circunstancias donde quisieramos tener un parametro opcional
+y poder controlar la situacion en la cual se llama a la función sin dicho parametro.
+
+<Code fileName='sumaDefault.py'></Code>
+
+Dado que la **c** es un parametro opcional, podriamos invocar a la función sin dicho parametro.
+
+
+### Scope (alcance) 
+
+En este momento es de interes deifinir el scope o alcance de una función.
+Como hemos visto en ejemplos anteriores, dentro de las funciones podemos declarar variables 
+y utilizarlas con normalidad. Ahora bien, debemos tener en cuenta que:
+- Las variables que se declaran dentro del cuerpo de una función no existen por fuera de ella, 
+es por ello que se las denomina ***variables locales.***
+- Por fuera de la función solo se pueden acceder a los valores que se devuelven a través de la sentencia ***return***
+
+<Code fileName='funcionScope.py'></Code>
+
+<Debugger fileName='funcionScope.py'></Debugger>
+
+### Documentación.
+
+Quizas de lo mas importante y lo menos recordado por los programadores: **¡La Documentación!**
+
+Debemos tener en cuenta que una de las principales razones por las cuales utilizamos funciones es que,
+nos permiten abstraernos de los problemas para pensarlos en problemas mas pequeños y ademas, nos permiten reutilizar
+**soluciones repetitivas** a problemas recurrentes!
+
+Pero y entonces ¿A qué viene el cuento de documentar?
+
+Bueno, resulta que al momento de escribir el codigo que nos brindara una solucion, 
+puede que estemos muy interiorizados con el dominio del problema y no nos resulte 
+una ardua tarea comprender su funcionamiento. 
+Pero en la realidad no existimos solos, y tampoco tenemos tan buena memoria. 
+Por lo tanto es muy buena practica de programación **documentar** nuestras funciones,
+por el bien de quienes lean y utilicen nuestro codigo, eh incluso por nosotros mismos!
+
+En python tenemos una manera de documentar las funciones, y es mediante los **"Docstrings".**
+
+Estos se abren y cierran con triple comillas dobles y se escriben en la primer linea de la funcion.
+
+
+<Code fileName='funcionAreaDocumentada.py'></Code>
+
+### Imprimir vs Devolver
+
+Hay dos preguntas interesantes que nos podemos realizar al momento de escribir una función.
+- ¿Debera recibir los datos de entrada por parámetros, o deberean ser ingresados dentro del cuerpo de mi función?
+<Box>
+Si bien la respuesta a esta pregunta dependera del contexto, en general es una mejor practica que los datos a procesar
+sean recibidos por parámetros, ya que esto vuelve a la función mas **reutilizable.**
+</Box>
+- ¿Imprimo los resultados de mi función o los devuelvo al programa que llamo a la función?
+<Box>
+De la misma manera, una función es mas reutilizable si devuelve sus valores que si los imprime en pantalla.
+</Box>
+
+### Devolver mas de un valor.
+
+En python podemos retornar mas de un valor cuando sea necesario, esto puede ser de utilidad en varios problemas.
+
+¿Como lo realizamos?
+
+> Declaración de la función:
+
+Vamos a poner los valores uno a uno separados por comas ',' de la siguiente manera: **return x,y,z**
+
+> Llamada a la función:
+
+Vamos a invocar la función y asignar los valores que retorna en variables, tambien separadas por comas.
+Ejemplo: **a,b,c = nombre_de_funcion(m)**
+
+### Modulos.
+
+¿Como utilizamos las funciones?
+
+Existen dos maneras:
+- Una es basicamente la que estuvimos utilzando en los ejemplos anteriores. Es escribir la definicion de mi función
+dentro de mi programa, y llamar a la misma en alguna seccion del codigo.
+- La otra es escribir mis funciones en archivos separados (**un poco mas intersante**). Estos archivos en python los denominaremos **modulos**.
+
+<Box>
+  - Un Modulo es una archivo ***Python*** (extension **.py**) donde iremos definiendo nuestras funciones.
+  - Luego en nuestro modulo principal importaremos nuestro modulo con la sentencia **import** y el nombre del archivo.
+</Box>
+
+<Code fileName='geometria.py'></Code>
+
+<Code fileName='usoGeometria.py'></Code>
+
+<BackToTop text={frontmatter.title} client:load />

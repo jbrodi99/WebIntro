@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Función como Máquina</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .machine {
+            width: 200px;
+            height: 150px;
+            background: gray;
+            border: 5px solid black;
+            position: relative;
+            text-align: center;
+            line-height: 150px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            margin: 20px 0;
+        }
+        .arrow {
+            font-size: 30px;
+            margin: 10px 0;
+        }
+        .input, .output {
+            width: 100px;
+            height: 50px;
+            border: 2px solid black;
+            line-height: 50px;
+            font-size: 16px;
+            background: white;
+        }
+        .processing {
+            background-color: yellow;
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .outputBox {
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <input type="text" id="inputValue" placeholder="Ingrese un número">
+        <button onclick="processFunction()">Ejecutar Función</button>
+        
+        <div class="input" id="inputBox">Entrada</div>
+        <div class="arrow">⬇️</div>
+        <div class="machine" id="functionBox">Máquina de Función</div>
+        <div class="arrow">⬇️</div>
+        <div class="output" id="outputBox">Salida</div>
+    </div>
+    
+    <script>
+        function processFunction() {
+            let input = document.getElementById("inputValue").value;
+            let inputBox = document.getElementById("inputBox");
+            let functionBox = document.getElementById("functionBox");
+            let outputBox = document.getElementById("outputBox");
+            
+            inputBox.textContent = `Entrada: ${input}`;
+            functionBox.classList.add("processing");
+            functionBox.textContent = "Procesando...";
+            
+            setTimeout(() => {
+                functionBox.classList.remove("processing");
+                functionBox.textContent = "Máquina de Función";
+                let output = input * 2; // Simulación de procesamiento
+                outputBox.textContent = `Salida: ${output}`;
+                outputBox.classList.add("outputBox");
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

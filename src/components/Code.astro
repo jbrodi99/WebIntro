@@ -1,0 +1,21 @@
+---
+import { readFile } from 'fs/promises';
+import hljs from 'highlight.js';
+
+const { fileName, language = "python" } = Astro.props;
+
+let code = "";
+try {
+  const filePath = `./src/code/${fileName}`;
+  code = await readFile(filePath, 'utf-8');
+} catch (error) {
+  console.error("Error leyendo el archivo:", error);
+}
+
+const highlightedCode = hljs.highlight(code, { language }).value;
+---
+
+{code.length > 0 ? (
+  <pre><code class={`hljs language-${language}`} set:html={highlightedCode}></code></pre>
+) : <p>Error cargando el código.</p>}
+

@@ -4,6 +4,8 @@
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
 
+ @import "highlight.js/styles/github-dark.css";
+
 :root {
 	--accent: #2337ff;
 	--accent-dark: #000d8a;
@@ -152,3 +154,18 @@ hr {
 	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
 }
+
+.function-indent {
+	padding-left: 20px;
+}
+
+.container-gap {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.container-mg {
+	margin-top: 10%;
+}
+
